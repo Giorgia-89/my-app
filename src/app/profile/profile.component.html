@@ -1,0 +1,9 @@
+<form [formGroup]="profile" (ngSubmit)="onSubmit()">
+
+  <label for="full-name">Nome completo: </label>
+  <input id="full-name" type="text" formControlName="fullName">
+
+  <label for="email-address">Email: </label>
+  <input id="email-address" type="text" formControlName="email">
+
+</form>
