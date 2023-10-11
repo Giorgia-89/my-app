@@ -29,6 +29,10 @@
                 Formato inválido.
             </p>
         </div>
+        <div class="date-of-birth section">
+            <p for="date-of-birth">Data de Nascimento:</p>
+            <input type="date" id="date-of-birth" formControlName="dateOfBirth">
+        </div>
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
         </div>

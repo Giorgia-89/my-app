@@ -13,6 +13,7 @@ export class FormComponent {
     fullName: new FormControl('',  [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     nif: new FormControl('', [Validators.required, this.validateNif.bind(this)]),
+    dateOfBirth: new FormControl('')
   });
 
   isFormValid(): boolean {
