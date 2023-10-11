@@ -1,5 +1,30 @@
-<p>form works!</p>
+<h1>Please fill the following form</h1>
 
-<form>
-
+<form [formGroup]="profile" class="profile">
+    <div class="name">
+        <label for="fullName">Nome completo:</label>
+        <input type="text" id="fullName" formControlName="fullName">
+        <div *ngIf="profile.get('fullName')?.hasError('required')  && profile.get('fullName')?.touched" class="error-message">
+            Este campo é obrigatório.
+        </div>
+    </div>
+    <div class="emailAddress">
+        <label for="email">Email:</label>
+        <input type="text" id="email" formControlName="email">
+        <div *ngIf="profile.get('email')?.hasError('required')  && profile.get('email')?.touched" class="error-message">
+            Este campo é obrigatório.
+        </div>
+        <div *ngIf="profile.get('email')?.hasError('email')  && profile.get('email')?.touched" class="error-message">
+            Formato inválido.
+        </div>
+    </div>
+    <div class="NIF">
+        <label for="nif">NIF:</label>
+        <input type="text" id="nif" formControlName="nif">
+        <div *ngIf="profile.get('nif')?.hasError('required')  && profile.get('nif')?.touched" class="error-message">
+            Este campo é obrigatório.
+        </div>
+       
+    </div>
+    <button>Sumbit</button>
 </form>
