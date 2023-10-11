@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,18 +11,17 @@ export class FormComponent {
   profile = new FormGroup({
     fullName: new FormControl('',  [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    nif: new FormControl('', [Validators.required]),
+    nif: new FormControl('', [Validators.required, this.validLength.bind(this)]),
   });
+
+  validLength(control: AbstractControl) {
+    const nif = control.value;
+    if(nif && nif.length === 9){
+      
+      return null;
+    } else {
+      return { invalidNifLength: true}
+    }
+  }
 }
 
-/**
- * Validates a Portuguese taxpayer identification number (NIF).
-  @param {string} nif - The NIF to validate.
-  @returns {boolean} Returns true if the NIF is valid, false otherwise.
-
-export function validateNIF(nif: string) {
-  if (nif.length != 9) {
-    return false;
-  }
-  return true;
-} */
