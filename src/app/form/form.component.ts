@@ -13,6 +13,10 @@ export class FormComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     nif: new FormControl('', [Validators.required, this.validLength.bind(this)]),
   });
+  
+  isFormValid(): boolean {
+    return this.profile.valid;
+  }
 
   validLength(control: AbstractControl) {
     const nif = control.value;
