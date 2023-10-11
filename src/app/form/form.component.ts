@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { stdnum } from 'stdnum';
 
 
 @Component({
@@ -11,21 +12,22 @@ export class FormComponent {
   profile = new FormGroup({
     fullName: new FormControl('',  [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    nif: new FormControl('', [Validators.required, this.validLength.bind(this)]),
+    nif: new FormControl('', [Validators.required, this.validateNif.bind(this)]),
   });
-  
+
   isFormValid(): boolean {
     return this.profile.valid;
   }
 
-  validLength(control: AbstractControl) {
+  validateNif(control: AbstractControl): { [key: string]: any } | null {
     const nif = control.value;
-    if(nif && nif.length === 9){
-      
+    const isValid = stdnum['PT']['nif'].validate(nif);
+    if (isValid.isValid) {
       return null;
     } else {
-      return { invalidNifLength: true}
+      return { invalidNif: true}
     }
   }
 }
 
+//console.log(stdnum['PT']['nif'].validate); 

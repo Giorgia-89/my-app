@@ -25,8 +25,8 @@
             <p *ngIf="profile.get('nif')?.hasError('required')  && profile.get('nif')?.touched" class="error-message">
                 Este campo é obrigatório.
             </p>
-            <p *ngIf="profile.get('nif')?.hasError('invalidNifLength')  && profile.get('nif')?.touched" class="error-message">
-                Por favor insira um NIF valido.
+            <p *ngIf="profile.get('nif')?.hasError('invalidNif')  && profile.get('nif')?.touched" class="error-message">
+                Formato inválido.
             </p>
         </div>
         <div class="submit">
