@@ -31,11 +31,26 @@
         </div>
         <div class="date-of-birth section">
             <p for="date-of-birth">Data de Nascimento:</p>
-            <input type="date" id="date-of-birth" formControlName="dateOfBirth" placeholder="MM/DD/AAAA">
+            <input type="date" id="date-of-birth" formControlName="dateOfBirth">
             <p *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message">
                 Este formulário só pode ser preenchido por maiores de 18 anos.
             </p>
-
+        </div>
+        <div class="country section">
+           <p for="country">País:</p>
+           <select id="country" formControlName="country">
+                <option value="">Selecione um país</option>
+                <option *ngFor="let country of countriesList" [value]="country.name">{{ country.name }}</option>
+            </select>
+        </div>
+        <div class="city section">
+            <p for="city">Cidade:</p>
+        <!--        
+            <select id="city" formControlName="city">
+                 <option value="">Selecione uma cidade</option>
+                 <option *ngFor="let city of citiesList" [value]="city.name">{{ city.name }}</option>
+             </select>
+        -->
         </div>
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
