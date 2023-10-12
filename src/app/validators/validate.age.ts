@@ -1,4 +1,4 @@
-import { AbstractControl, ControlConfig } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 export function validateAge( control: AbstractControl): { [key: string]: boolean } | null {
   let dobStr = control.value;

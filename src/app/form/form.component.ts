@@ -1,8 +1,8 @@
 import { DataService } from '../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
-import { stdnum } from 'stdnum';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAge } from '../validators/validate.age';
+import { validateNif } from '../validators/validate.nif';
 
 @Component({
   selector: 'formulario',
@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
   profile = new FormGroup({
     fullName: new FormControl('',  [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    nif: new FormControl('', [Validators.required, this.validateNif.bind(this)]),
+    nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
   });
   countries: any;
@@ -52,13 +52,5 @@ export class FormComponent implements OnInit {
   }
 
 
-  validateNif(control: AbstractControl): { [key: string]: any } | null {
-    const nif = control.value;
-    const isValid = stdnum['PT']['nif'].validate(nif);
-    if (isValid.isValid) {
-      return null;
-    } else {
-      return { invalidNif: true};
-    }
-  }
+
 }

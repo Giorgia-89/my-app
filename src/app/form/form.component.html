@@ -52,16 +52,6 @@
 
             </select>
         </div>
-        <!--
-        <div class="city section">
-            <p for="city">Cidade:</p>
-            <select id="city" formControlName="city">
-                <option value="">Selecione uma cidade</option>
-                <option *ngFor="let city of countriesList.cityName" [value]="city.id">{{ city.cityName }}</option>
-
-            </select>
-        </div>
-        -->
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
         </div>
