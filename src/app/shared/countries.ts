@@ -1,11 +1,12 @@
 export interface Countries {
-    id: number
-    name: string
+    id: number;
+    name: string;
 }
 
 export interface Cities {
-    countryId: number
-    cityName: string
+    id: number;
+    countryId: number;
+    cityName: string;
 }
 
 export var countries: Countries [] = [
@@ -17,22 +18,29 @@ export var countries: Countries [] = [
 ]
 
 export var cities: Cities [] = [
-    { countryId: 1, cityName: "Lisboa"},
-    { countryId: 1, cityName: "Coimbra"},
-    { countryId: 1, cityName: "Braga"},
-    { countryId: 2, cityName: "Roma"},
-    { countryId: 2, cityName: "Napoli"},
-    { countryId: 2, cityName: "Padova"},
-    { countryId: 3, cityName: "Athens"},
-    { countryId: 3, cityName: "Corfu"},
-    { countryId: 3, cityName: "Larissa"},
-    { countryId: 4, cityName: "Madrid"},
-    { countryId: 4, cityName: "Barcelona"},
-    { countryId: 4, cityName: "Granada"},
-    { countryId: 5, cityName: "Paris"},
-    { countryId: 5, cityName: "Marselha"},
-    { countryId: 5, cityName: "Lyon"},
+    { id: 1, countryId: 1, cityName: "Lisboa"},
+    { id: 2, countryId: 1, cityName: "Coimbra"},
+    { id: 3, countryId: 1, cityName: "Braga"},
+    { id: 4, countryId: 2, cityName: "Roma"},
+    { id: 5, countryId: 2, cityName: "Napoli"},
+    { id: 6, countryId: 2, cityName: "Padova"},
+    { id: 7, countryId: 3, cityName: "Athens"},
+    { id: 8, countryId: 3, cityName: "Corfu"},
+    { id: 9, countryId: 3, cityName: "Larissa"},
+    { id: 10, countryId: 4, cityName: "Madrid"},
+    { id: 11, countryId: 4, cityName: "Barcelona"},
+    { id: 12, countryId: 4, cityName: "Granada"},
+    { id: 13, countryId: 5, cityName: "Paris"},
+    { id: 14, countryId: 5, cityName: "Marselha"},
+    { id: 15, countryId: 5, cityName: "Lyon"},
 ]
+
+/*
+export function filterCities(cities: string[]): {
+    let selectedCountry = profile.get('country').value;
+    let filteredCities = citiesList.filter(city => city.countryId === countryId);
+}
+*/
 /*export class Countries{
     constructor(public id: number,
                 public name: string) {}
