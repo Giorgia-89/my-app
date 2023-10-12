@@ -31,7 +31,11 @@
         </div>
         <div class="date-of-birth section">
             <p for="date-of-birth">Data de Nascimento:</p>
-            <input type="date" id="date-of-birth" formControlName="dateOfBirth">
+            <input type="date" id="date-of-birth" formControlName="dateOfBirth" placeholder="MM/DD/AAAA">
+            <p *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message">
+                Este formulário só pode ser preenchido por maiores de 18 anos.
+            </p>
+
         </div>
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
