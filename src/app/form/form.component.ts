@@ -34,20 +34,18 @@ export class FormComponent implements OnInit {
   showAll(){
     this.dataService.getAll().subscribe(
       (data: any) => {
-        this.countries = data,
+        this.countries = data;
         console.log(this.countries);
       }
-    )
+    );
   }
 
   onSelect(countryId: any){
     this.dataService.getAll().subscribe((res: any)=>{
-      this.cities = res['cities'].filter((res:any)=> res.countryId == countryId!.value),
+      this.cities = res['cities'].filter((res:any)=> res.countryId == countryId.value);
       console.log(this.cities);
-    })
+    });
   }
-
-
 
   isFormValid(): boolean {
     return this.profile.valid;

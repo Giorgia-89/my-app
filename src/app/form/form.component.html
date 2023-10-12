@@ -39,25 +39,25 @@
         <div class="country section">
            <p for="country">País:</p>
            <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target)" [ngModelOptions]="{standalone: true}">
-                <option value="">Selecione um país</option>
-                <option *ngFor="let country of countries?.countries" [value]="country.id">{{ country.name }}</option>
+              <option value="0">Selecione um país</option>
+              <option *ngFor="let country of countries?.countries" [value]="country.id">{{ country.name }}</option>
+            </select>
+        </div>
+
+        <div class="city section">
+            <p for="city">Cidade:</p>
+            <select>
+                <option value="0">Selecione uma cidade</option>
+                <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+
             </select>
         </div>
         <!--
         <div class="city section">
-            <p for="city">Cidade:</p>      
+            <p for="city">Cidade:</p>
             <select id="city" formControlName="city">
                 <option value="">Selecione uma cidade</option>
-                <option *ngFor="let city of citiesList" [value]="city.id">{{ city.cityName }}</option>   
-
-            </select>
-        </div>
-        
-        <div class="city section">
-            <p for="city">Cidade:</p>      
-            <select id="city" formControlName="city">
-                <option value="">Selecione uma cidade</option>
-                <option *ngFor="let city of countriesList.cityName" [value]="city.id">{{ city.cityName }}</option>   
+                <option *ngFor="let city of countriesList.cityName" [value]="city.id">{{ city.cityName }}</option>
 
             </select>
         </div>
