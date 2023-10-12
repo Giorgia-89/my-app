@@ -1,0 +1,54 @@
+{
+    "countries": [
+        {
+            "id": 1,
+            "name": "Portugal"
+        },
+        { 
+            "id": 2,
+            "name": "Itália"},
+        { 
+            "id": 3,
+            "name": "Grécia"},
+        { 
+            "id": 4,
+            "name": "Espanha"},
+        { 
+            "id": 5,
+            "name": "França"
+        }
+    ],
+    "cities": [
+        { 
+            "id": 1, 
+            "countryId": 1, 
+            "name": "Lisboa"
+        },
+        { 
+            "id": 2,
+            "countryId": 1,
+            "name": "Coimbra"
+        },
+        { 
+            "id": 3,
+            "countryId": 1,
+            "name": "Braga"
+        },
+        { 
+            "id": 4,
+            "countryId": 2,
+            "name": "Roma"
+        },
+        { "id": 5, "countryId": 2, "name": "Napoli"},
+        { "id": 6, "countryId": 2, "name": "Padova"},
+        { "id": 7, "countryId": 3, "name": "Athens"},
+        { "id": 8, "countryId": 3, "name": "Corfu"},
+        { "id": 9, "countryId": 3, "name": "Larissa"},
+        { "id": 10, "countryId": 4, "name": "Madrid"},
+        { "id": 11, "countryId": 4, "name": "Barcelona"},
+        { "id": 12, "countryId": 4, "name": "Granada"},
+        { "id": 13, "countryId": 5, "name": "Paris"},
+        { "id": 14, "countryId": 5, "name": "Marselha"},
+        { "id": 15, "countryId": 5, "name": "Lyon"}
+    ]
+}

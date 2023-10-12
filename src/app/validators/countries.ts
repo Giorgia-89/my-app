@@ -1,3 +1,4 @@
+/*
 export interface Countries {
     id: number;
     name: string;
@@ -34,31 +35,18 @@ export var cities: Cities [] = [
     { id: 14, countryId: 5, cityName: "Marselha"},
     { id: 15, countryId: 5, cityName: "Lyon"},
 ]
-
-/*
-export function filterCities(cities: string[]): {
-    let selectedCountry = profile.get('country').value;
-    let filteredCities = citiesList.filter(city => city.countryId === countryId);
-}
 */
-/*export class Countries{
-    constructor(public id: number,
-                public name: string) {}
-    ngOnInit() {
-    {[this.id = 1,
-    this.name = "Portugal"
-    ]}
-    {[this.id = 2,
-        this.name = "Italia"
-    ]}    
-    {[this.id = 3,
-        this.name = "Espanha"
-    ]}    
-    {[this.id = 4,
-        this.name = "França"
-    ]}
-    {[this.id = 5,
-        this.name = "Grécia"
-    ]}      
-    }
-}*/
+export interface Countries {
+    id: number,
+    name: string,
+    cities: string[];
+}
+
+export const countries: Countries[] =  [
+
+    { id: 1, name: "Portugal", cities: ["Braga", "Coimbra", "Lisboa"]},
+    { id: 2, name: "Itália", cities: ["Napoles", "Pisa",  "Roma"]},
+    { id: 3, name: "Grécia", cities: ["Athens", "Corfu",  "Larissa"]},
+    { id: 4, name: "Espanha", cities: ["Barcelona", "Granada", "Madrid"]},
+    { id: 5, name: "França", cities: ["Lyon", "Marselha", "Paris"]}
+]

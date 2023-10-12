@@ -38,11 +38,12 @@
         </div>
         <div class="country section">
            <p for="country">País:</p>
-           <select id="country" formControlName="country">
+           <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target)" [ngModelOptions]="{standalone: true}">
                 <option value="">Selecione um país</option>
-                <option *ngFor="let country of countriesList" [value]="country.id">{{ country.name }}</option>
+                <option *ngFor="let country of countries?.countries" [value]="country.id">{{ country.name }}</option>
             </select>
         </div>
+        <!--
         <div class="city section">
             <p for="city">Cidade:</p>      
             <select id="city" formControlName="city">
@@ -51,6 +52,16 @@
 
             </select>
         </div>
+        
+        <div class="city section">
+            <p for="city">Cidade:</p>      
+            <select id="city" formControlName="city">
+                <option value="">Selecione uma cidade</option>
+                <option *ngFor="let city of countriesList.cityName" [value]="city.id">{{ city.cityName }}</option>   
+
+            </select>
+        </div>
+        -->
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
         </div>
