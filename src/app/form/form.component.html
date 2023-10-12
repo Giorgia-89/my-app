@@ -51,6 +51,14 @@
 
             </select>
         </div>
+        <div class="city section">
+            <p for="city">Cidade:</p>
+            <select id="city" [formControl]="filteredCitiesControl">
+              <option value="">Selecione uma cidade</option>
+              <option *ngFor="let city of filteredCities?.value" [value]="city">{{ city }}</option>
+            </select>
+          </div>
+          
         <div class="submit">
             <button class="submit" [disabled]="!isFormValid()">Submit</button>
         </div>

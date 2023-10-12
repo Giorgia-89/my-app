@@ -12,30 +12,38 @@ import { validateAge } from '../shared/validate.age';
 export class FormComponent  {
   countriesList: Countries[] = countries;
   citiesList: Cities[] = cities;
+  filteredCitiesControl = new FormControl([]);;
   profile = new FormGroup({
     fullName: new FormControl('',  [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     nif: new FormControl('', [Validators.required, this.validateNif.bind(this)]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
     country: new FormControl(''),
-    city: new FormControl(''),
+    filteredCities: this.filteredCitiesControl,
   });
+  constructor() {}
+
+  ngOnInit() {
+    // Set the default value for filteredCities in ngOnInit
+    this.profile.get('filteredCities')?.setValue(this.filterCities());
+  }
 
   isFormValid(): boolean {
     return this.profile.valid;
   }
+  
 
   filterCities(): string[] {
     const selectedCountryId = this.profile.get('country.id')?.value;
+    let cityName: string[] = [];
+
     if (selectedCountryId) {
-      // Use Array.prototype.filter to find cities that match the selected countryId
-      const filteredCities = this.citiesList
-        .filter(city => city.countryId === selectedCountryId)
-        .map(city => city.cityName);
-      return filteredCities;
+      cityName = this.citiesList.filter(city => city.countryId === selectedCountryId).map(city => city.cityName);
+      
     } else {
-      return []; // Return an empty array if no country is selected
+      cityName = this.citiesList.map(city => city.cityName);
     }
+    return cityName;
   }
 
   validateNif(control: AbstractControl): { [key: string]: any } | null {
