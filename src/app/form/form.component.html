@@ -65,7 +65,7 @@
               Este campo é obrigatório.
             </p>
             <!--if selected country is portugal, validate postcode -->
-            <p *ngIf="profile.get('postcode')?.hasError('invalid')" class="error-message">
+            <p *ngIf="profile.get('selectedCountry')?.value === 'Portugal' && profile.get('postcode')?.hasError('invalid')" class="error-message">
               Formato inválido.
             </p>
         </div>
