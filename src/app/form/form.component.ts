@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAge } from '../validators/validate.age';
 import { validateNif } from '../validators/validate.nif';
-
+import { validatePostcode } from '../validators/validate.postcode';
 @Component({
   selector: 'formulario',
   templateUrl: './form.component.html',
@@ -17,6 +17,8 @@ export class FormComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
+    address: new FormControl('', [Validators.required]),
+    postcode: new FormControl('', [Validators.required, validatePostcode]),
   });
   countries: any;
   cities: any;
@@ -50,7 +52,5 @@ export class FormComponent implements OnInit {
   isFormValid(): boolean {
     return this.profile.valid;
   }
-
-
 
 }

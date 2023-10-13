@@ -43,17 +43,33 @@
               <option *ngFor="let country of countries?.countries" [value]="country.id">{{ country.name }}</option>
             </select>
         </div>
-
         <div class="city section">
             <p for="city">Cidade:</p>
             <select>
                 <option value="0">Selecione uma cidade</option>
                 <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-
             </select>
         </div>
-        <div class="submit">
-            <button class="submit" [disabled]="!isFormValid()">Submit</button>
+        <div class="address section">
+          <p for="address">Endereço</p>
+            <input type="text" id="address" formControlName="address" placeholder="Morada principal">
+            <p *ngIf="profile.get('address')?.hasError('required') && profile.get('address')?.touched" class="error-message">
+              Este campo é obrigatório.
+            </p>
         </div>
+        <div class="postcode section">
+          <p for="postcode">Código Postal</p>
+            <input type="text" id="postcode" formControlName="postcode" placeholder="XXXX-XXX">
+            <p *ngIf="profile.get('postcode')?.hasError('required') && profile.get('postcode')?.touched" class="error-message">
+              Este campo é obrigatório.
+            </p>
+            <!--if selected country is portugal, validate postcode -->
+            <p *ngIf="selectedCountry.name === 'Portugal' && profile.get('postcode')?.hasError('invalidPostcode') && profile.get('postcode')?.touched" class="error-message">
+              Formato inválido.
+        </div>
+
+        <div class="submit">
+          <button class="submit" [disabled]="!isFormValid()">Submit</button>
+      </div>
     </form>
 </div>

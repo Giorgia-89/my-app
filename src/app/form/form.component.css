@@ -1,15 +1,26 @@
-.form-container {
+/*.form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+*/
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 100%;
+}
 
 .submit {
-    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
 
 .error-message {
-    color: red;
+  color: red;
+}
+
+#addressStreet {
+  width: 100%
 }
