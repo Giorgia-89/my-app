@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
     nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
     address: new FormControl('', [Validators.required]),
-    postcode: new FormControl('', [Validators.required, validatePostcode])
+    postcode: new FormControl('')
   });
   countries: any;
   cities: any;
@@ -26,18 +26,23 @@ export class FormComponent implements OnInit {
     id: 0, name: ''
   };
   constructor(private dataService: DataService) {}
-
-
+  
   ngOnInit(): void {
     this.showAll();
-    this.onSelect(this.selectedCountry.id);
+    this.profile.get('selectedCountry')?.valueChanges.subscribe(country => {
+      this.selectedCountry = country;
+      // Update the cities and postcode validators
+      this.onSelect(this.selectedCountry.id);
+    });
+  
   }
+
 
   showAll(){
     this.dataService.getAll().subscribe(
       (data: any) => {
         this.countries = data;
-        console.log(this.countries);
+        //console.log(this.countries);
       }
     );
   }
@@ -45,8 +50,28 @@ export class FormComponent implements OnInit {
   onSelect(countryId: any){
     this.dataService.getAll().subscribe((res: any)=>{
       this.cities = res['cities'].filter((res:any)=> res.countryId == countryId.value);
-      console.log(this.cities);
+      this.updatePostcodeValidators();
     });
+  }
+
+  private updatePostcodeValidators(): void {
+    const postcodeControl = this.profile.get('postcode');
+    
+    if (postcodeControl) {
+      const countryCode = this.selectedCountry.id;
+      console.log(`country code is ${countryCode}`);
+      if (countryCode == 1) { 
+        postcodeControl.clearValidators();
+        postcodeControl.addValidators([Validators.required, validatePostcode]);
+      } else {
+        postcodeControl.clearValidators();
+        postcodeControl.addValidators([Validators.required]);
+      }
+      console.log(postcodeControl.errors);
+     
+      // Update the validity status of the control
+      postcodeControl.updateValueAndValidity();
+    }
   }
 
   isFormValid(): boolean {
