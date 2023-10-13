@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAge } from '../validators/validate.age';
 import { validateNif } from '../validators/validate.nif';
 import { validatePostcode } from '../validators/validate.postcode';
+import { validatePhoneNumber } from '../validators/validate.phone.number';
 @Component({
   selector: 'formulario',
   templateUrl: './form.component.html',
@@ -18,7 +19,8 @@ export class FormComponent implements OnInit {
     nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
     address: new FormControl('', [Validators.required]),
-    postcode: new FormControl('')
+    postcode: new FormControl(''),
+    phoneNumber: new FormControl('', [Validators.required, validatePhoneNumber]),
   });
   countries: any;
   cities: any;
@@ -60,15 +62,14 @@ export class FormComponent implements OnInit {
     if (postcodeControl) {
       const countryCode = this.selectedCountry.id;
       console.log(`country code is ${countryCode}`);
+      console.log(`postcode is ${this.profile.get('postcode')}`);
       if (countryCode == 1) { 
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required, validatePostcode]);
       } else {
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required]);
-      }
-      console.log(postcodeControl.errors);
-     
+      }     
       // Update the validity status of the control
       postcodeControl.updateValueAndValidity();
     }

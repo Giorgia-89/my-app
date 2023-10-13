@@ -69,6 +69,16 @@
               Formato inválido.
             </p>
         </div>
+        <div class="phoneNumber section">
+          <p for="phoneNumber">Telefone</p>
+          <input type="text" id="phoneNumber" formControlName="phoneNumber">
+          <p *ngIf="profile.get('phoneNumber')?.hasError('required') && profile.get('phoneNumber')?.touched" class="error-message">
+            Este campo é obrigatório.
+          </p>
+          <p *ngIf="profile.get('phoneNumber')?.hasError('invalidPhoneNumber') && profile.get('phoneNumber')?.touched" class="error-message">
+            Formato inválido.
+          </p>
+        </div>
 
         <div class="submit">
           <button class="submit" [disabled]="!isFormValid()">Submit</button>
