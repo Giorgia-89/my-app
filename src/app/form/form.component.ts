@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
     nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
     address: new FormControl('', [Validators.required]),
-    postcode: new FormControl('', [Validators.required, validatePostcode]),
+    postcode: new FormControl('', [Validators.required, validatePostcode])
   });
   countries: any;
   cities: any;

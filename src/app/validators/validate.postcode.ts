@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl} from '@angular/forms';
 
 export function validatePostcode(control: AbstractControl): {[key: string]:any} | null {
   const postcode = control.value;

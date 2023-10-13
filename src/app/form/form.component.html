@@ -52,20 +52,22 @@
         </div>
         <div class="address section">
           <p for="address">Endereço</p>
-            <input type="text" id="address" formControlName="address" placeholder="Morada principal">
+            <input type="text" id="address" formControlName="address" >
             <p *ngIf="profile.get('address')?.hasError('required') && profile.get('address')?.touched" class="error-message">
               Este campo é obrigatório.
             </p>
         </div>
+
         <div class="postcode section">
           <p for="postcode">Código Postal</p>
-            <input type="text" id="postcode" formControlName="postcode" placeholder="XXXX-XXX">
+            <input type="text" id="postcode" formControlName="postcode">
             <p *ngIf="profile.get('postcode')?.hasError('required') && profile.get('postcode')?.touched" class="error-message">
               Este campo é obrigatório.
             </p>
             <!--if selected country is portugal, validate postcode -->
-            <p *ngIf="selectedCountry.name === 'Portugal' && profile.get('postcode')?.hasError('invalidPostcode') && profile.get('postcode')?.touched" class="error-message">
+            <p *ngIf="profile.get('postcode')?.hasError('invalid')" class="error-message">
               Formato inválido.
+            </p>
         </div>
 
         <div class="submit">
