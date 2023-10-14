@@ -79,7 +79,14 @@
             Formato inválido.
           </p>
         </div>
-
+        <div class="gender section">
+          <p for="gender">Género</p>
+          <input type="radio" name="gender" value="F" formControlName="gender">Feminino
+          <input type="radio" name="gender" value="M" formControlName="gender">Masculino
+          <p *ngIf="profile.get('gender')?.hasError('required') && profile.get('gender')?.touched" class="error-message">
+          Este campo é obrigatório.
+          </p>
+        </div>
         <div class="submit">
           <button class="submit" [disabled]="!isFormValid()">Submit</button>
       </div>

@@ -21,6 +21,7 @@ export class FormComponent implements OnInit {
     address: new FormControl('', [Validators.required]),
     postcode: new FormControl(''),
     phoneNumber: new FormControl('', [Validators.required, validatePhoneNumber]),
+    gender: new FormControl('', [Validators.required])
   });
   countries: any;
   cities: any;
@@ -28,7 +29,7 @@ export class FormComponent implements OnInit {
     id: 0, name: ''
   };
   constructor(private dataService: DataService) {}
-  
+
   ngOnInit(): void {
     this.showAll();
     this.profile.get('selectedCountry')?.valueChanges.subscribe(country => {
@@ -36,7 +37,7 @@ export class FormComponent implements OnInit {
       // Update the cities and postcode validators
       this.onSelect(this.selectedCountry.id);
     });
-  
+
   }
 
 
@@ -58,18 +59,18 @@ export class FormComponent implements OnInit {
 
   private updatePostcodeValidators(): void {
     const postcodeControl = this.profile.get('postcode');
-    
+
     if (postcodeControl) {
       const countryCode = this.selectedCountry.id;
       console.log(`country code is ${countryCode}`);
       console.log(`postcode is ${this.profile.get('postcode')}`);
-      if (countryCode == 1) { 
+      if (countryCode == 1) {
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required, validatePostcode]);
       } else {
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required]);
-      }     
+      }
       // Update the validity status of the control
       postcodeControl.updateValueAndValidity();
     }
