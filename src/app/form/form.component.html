@@ -1,6 +1,4 @@
-
-
-<div class="form-container">
+<main class="form-container">
   <h2>Preencha o seguinte formulário</h2>
   <form [formGroup]="profile" class="profile">
       <div class="name section">
@@ -39,7 +37,7 @@
       </div>
       <div class="countries section">
           <p for="countries">País:</p>
-          <select formControlName="countries" (change)="onSelect">
+          <select name="countries" id="countries" formControlName="countries" (change)="onSelect">
             <option ngValue="">Selecione um país</option>
             <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
           </select>
@@ -49,7 +47,7 @@
       </div>
       <div class="cities section">
           <p for="cities">Cidade:</p>
-          <select formControlName="cities" (change)="onSelect">
+          <select name="cities" id="cities" formControlName="cities" (change)="onSelect">
             <option ngValue="">Selecione uma cidade</option>
             <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
           </select>
@@ -100,4 +98,4 @@
         <button class="submit" [disabled]="!isFormValid()">Submit</button>
     </div>
   </form>
-</div>
+</main>
