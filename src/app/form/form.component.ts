@@ -1,4 +1,3 @@
-import { DataService } from '../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validateAge } from '../validators/validate.age';
@@ -18,59 +17,82 @@ export class FormComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     nif: new FormControl('', [Validators.required, validateNif]),
     dateOfBirth: new FormControl('', [Validators.required, validateAge]),
+    countries: new FormControl('', [Validators.required]),
+    cities: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     postcode: new FormControl(''),
     phoneNumber: new FormControl('', [Validators.required, validatePhoneNumber]),
     gender: new FormControl('', [Validators.required])
   });
-  countries: any;
-  cities: any;
-  selectedCountry: any = {
-    id: 0, name: ''
-  };
-  constructor(private dataService: DataService) {}
+
+  //define the countries var as an array of arrays
+  countries: any = [
+    { id: 1, name: 'Portugal'},
+    { id: 2, name: 'Spain'},
+    { id: 3, name: 'France'},
+    { id: 4, name: 'Germany'},
+    { id: 5, name: 'Italy'}
+  ];
+  cities: any = [
+    { id: 1, countryId: 1, name: 'Lisboa' },
+    { id: 2, countryId: 1, name: 'Porto' },
+    { id: 3, countryId: 1, name: 'Braga' },
+    { id: 4, countryId: 1, name: 'Coimbra' },
+    { id: 5, countryId: 1, name: 'Faro' },
+    { id: 6, countryId: 2, name: 'Madrid' },
+    { id: 7, countryId: 2, name: 'Barcelona' },
+    { id: 8, countryId: 2, name: 'Valencia' },
+    { id: 9, countryId: 2, name: 'Sevilla' },
+    { id: 10, countryId: 2, name: 'Bilbao' },
+    { id: 11, countryId: 3, name: 'Paris' },
+    { id: 12, countryId: 3, name: 'Marseille' },
+    { id: 13, countryId: 3, name: 'Lyon' },
+    { id: 14, countryId: 3, name: 'Toulouse' },
+    { id: 15, countryId: 3, name: 'Nice' },
+    { id: 16, countryId: 4, name: 'Berlin' },
+    { id: 17, countryId: 4, name: 'Hamburg' },
+    { id: 18, countryId: 4, name: 'Munich' },
+    { id: 19, countryId: 4, name: 'Cologne' },
+    { id: 20, countryId: 4, name: 'Frankfurt' },
+    { id: 21, countryId: 5, name: 'Rome' },
+    { id: 22, countryId: 5, name: 'Milan' },
+    { id: 23, countryId: 5, name: 'Naples' },
+    { id: 24, countryId: 5, name: 'Turin' },
+    { id: 25, countryId: 5, name: 'Palermo'}
+  ];
 
   ngOnInit(): void {
-    this.showAll();
-    this.profile.get('selectedCountry')?.valueChanges.subscribe(country => {
-      this.selectedCountry = country;
-      // Update the cities and postcode validators
-      this.onSelect(this.selectedCountry.id);
-    });
+    this.onSelect();
 
   }
+  onSelect(){
+    this.profile.get('countries')?.valueChanges.subscribe((countryId: any) => {
+      console.log(`On change country is ${countryId}` );
+      this.cities = this.cities.filter((item: any) => item.countryId == countryId);
+      console.log(`Filtered Cities: `, this.cities);
 
-
-  showAll(){
-    this.dataService.getAll().subscribe(
-      (data: any) => {
-        this.countries = data;
-        //console.log(this.countries);
-      }
-    );
-  }
-
-  onSelect(countryId: any){
-    this.dataService.getAll().subscribe((res: any)=>{
-      this.cities = res['cities'].filter((res:any)=> res.countryId == countryId.value);
       this.updatePostcodeValidators();
     });
   }
+
+
+
 
   private updatePostcodeValidators(): void {
     const postcodeControl = this.profile.get('postcode');
 
     if (postcodeControl) {
-      const countryCode = this.selectedCountry.id;
+      const countryCode = this.profile.get('countries')?.value;
       console.log(`country code is ${countryCode}`);
       console.log(`postcode is ${this.profile.get('postcode')}`);
-      if (countryCode == 1) {
+     /* if (countryCode == 1) {
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required, validatePostcode]);
       } else {
         postcodeControl.clearValidators();
         postcodeControl.addValidators([Validators.required]);
       }
+      */
       // Update the validity status of the control
       postcodeControl.updateValueAndValidity();
     }

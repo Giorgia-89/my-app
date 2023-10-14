@@ -36,19 +36,19 @@
                 Este formulário só pode ser preenchido por maiores de 18 anos.
             </p>
         </div>
-        <div class="country section">
-           <p for="country">País:</p>
-           <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target)" [ngModelOptions]="{standalone: true}">
+        <div class="countries section">
+           <p for="countries">País:</p>
+           <select formControlName="countries">
               <option value="0">Selecione um país</option>
-              <option *ngFor="let country of countries?.countries" [value]="country.id">{{ country.name }}</option>
+              <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
             </select>
         </div>
-        <div class="city section">
-            <p for="city">Cidade:</p>
-            <select>
+        <div class="cities section">
+            <p for="cities">Cidade:</p>
+            <select formControlName="cities" (change)="onSelect">
                 <option value="0">Selecione uma cidade</option>
                 <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-            </select>
+              </select>
         </div>
         <div class="address section">
           <p for="address">Endereço</p>
