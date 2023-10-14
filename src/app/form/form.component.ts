@@ -76,24 +76,21 @@ export class FormComponent implements OnInit {
     });
   }
 
-
-
-
   private updatePostcodeValidators(): void {
+
     const postcodeControl = this.profile.get('postcode');
 
     if (postcodeControl) {
-      const countryCode = this.profile.get('countries')?.value;
-      console.log(`country code is ${countryCode}`);
-      console.log(`postcode is ${this.profile.get('postcode')}`);
-     /* if (countryCode == 1) {
+      const countryId = this.profile.get('countries')?.value;
+      console.log(`countryId is ${countryId}`);
+      console.log(`postcode is ${this.profile.get('postcode.value')}`);
+      if (countryId === '1') {
         postcodeControl.clearValidators();
-        postcodeControl.addValidators([Validators.required, validatePostcode]);
+        postcodeControl.setValidators([Validators.required, validatePostcode]);
       } else {
         postcodeControl.clearValidators();
-        postcodeControl.addValidators([Validators.required]);
+        postcodeControl.setValidators([Validators.required]);
       }
-      */
       // Update the validity status of the control
       postcodeControl.updateValueAndValidity();
     }

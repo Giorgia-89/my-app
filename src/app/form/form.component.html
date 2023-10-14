@@ -66,7 +66,7 @@
 
         <div class="postcode section">
           <p for="postcode">Código Postal</p>
-            <input type="text" id="postcode" formControlName="postcode">
+            <input type="text" id="postcode" formControlName="postcode" (change)="onSelect">
             <p *ngIf="profile.get('postcode')?.hasError('required') && profile.get('postcode')?.touched" class="error-message">
               Este campo é obrigatório.
             </p>
