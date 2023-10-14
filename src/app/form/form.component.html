@@ -32,9 +32,9 @@
         <div class="date-of-birth section">
             <p for="date-of-birth">Data de Nascimento:</p>
             <input type="date" id="date-of-birth" formControlName="dateOfBirth">
-            <p *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message">
+            <div *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message dateofbirtherror">
                 Este formulário só pode ser preenchido por maiores de 18 anos.
-            </p>
+            </div>
         </div>
         <div class="countries section">
            <p for="countries">País:</p>
@@ -87,8 +87,10 @@
         </div>
         <div class="gender section">
           <p for="gender">Género</p>
-          <input type="radio" name="gender" value="F" formControlName="gender">Feminino
-          <input type="radio" name="gender" value="M" formControlName="gender">Masculino
+          <div class="gender-container">
+            <input type="radio" name="gender" value="F" formControlName="gender">Feminino
+            <input type="radio" name="gender" value="M" formControlName="gender">Masculino
+          </div>
           <p *ngIf="profile.get('gender')?.hasError('required') && profile.get('gender')?.touched" class="error-message">
           Este campo é obrigatório.
           </p>
