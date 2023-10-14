@@ -38,17 +38,23 @@
         </div>
         <div class="countries section">
            <p for="countries">País:</p>
-           <select formControlName="countries">
-              <option value="0">Selecione um país</option>
+           <select formControlName="countries" (change)="onSelect">
+              <option ngValue="">Selecione um país</option>
               <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
             </select>
+            <p *ngIf="profile.get('countries')?.hasError('required') && profile.get('countries')?.touched" class="error-message">
+              Este campo é obrigatório.
+            </p>
         </div>
         <div class="cities section">
             <p for="cities">Cidade:</p>
             <select formControlName="cities" (change)="onSelect">
-                <option value="0">Selecione uma cidade</option>
-                <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-              </select>
+              <option ngValue="">Selecione uma cidade</option>
+              <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+            </select>
+            <p *ngIf="profile.get('cities')?.hasError('required') && profile.get('cities')?.touched" class="error-message">
+              Este campo é obrigatório.
+            </p>
         </div>
         <div class="address section">
           <p for="address">Endereço</p>

@@ -60,6 +60,7 @@ export class FormComponent implements OnInit {
     { id: 24, countryId: 5, name: 'Turin' },
     { id: 25, countryId: 5, name: 'Palermo'}
   ];
+  allCities: any = this.cities;
 
   ngOnInit(): void {
     this.onSelect();
@@ -68,7 +69,7 @@ export class FormComponent implements OnInit {
   onSelect(){
     this.profile.get('countries')?.valueChanges.subscribe((countryId: any) => {
       console.log(`On change country is ${countryId}` );
-      this.cities = this.cities.filter((item: any) => item.countryId == countryId);
+      this.cities = this.allCities.filter((item: any) => item.countryId == countryId);
       console.log(`Filtered Cities: `, this.cities);
 
       this.updatePostcodeValidators();
