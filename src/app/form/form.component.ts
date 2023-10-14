@@ -68,22 +68,16 @@ export class FormComponent implements OnInit {
   }
   onSelect(){
     this.profile.get('countries')?.valueChanges.subscribe((countryId: any) => {
-      console.log(`On change country is ${countryId}` );
       this.cities = this.allCities.filter((item: any) => item.countryId == countryId);
-      console.log(`Filtered Cities: `, this.cities);
-
       this.updatePostcodeValidators();
     });
   }
-
   private updatePostcodeValidators(): void {
 
     const postcodeControl = this.profile.get('postcode');
 
     if (postcodeControl) {
       const countryId = this.profile.get('countries')?.value;
-      console.log(`countryId is ${countryId}`);
-      console.log(`postcode is ${this.profile.get('postcode.value')}`);
       if (countryId === '1') {
         postcodeControl.clearValidators();
         postcodeControl.setValidators([Validators.required, validatePostcode]);
@@ -91,7 +85,6 @@ export class FormComponent implements OnInit {
         postcodeControl.clearValidators();
         postcodeControl.setValidators([Validators.required]);
       }
-      // Update the validity status of the control
       postcodeControl.updateValueAndValidity();
     }
   }

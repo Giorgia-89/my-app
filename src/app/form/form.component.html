@@ -1,102 +1,103 @@
-<h1>Please fill the following form</h1>
+
 
 <div class="form-container">
-    <form [formGroup]="profile" class="profile">
-        <div class="name section">
-            <p for="fullName">Nome completo:</p>
-            <input type="text" id="fullName" formControlName="fullName">
-            <p *ngIf="profile.get('fullName')?.hasError('required')  && profile.get('fullName')?.touched" class="error-message">
-                Este campo é obrigatório.
-            </p>
-        </div>
-        <div class="emailAddress section">
-            <p for="email">Email:</p>
-            <input type="text" id="email" formControlName="email">
-            <p *ngIf="profile.get('email')?.hasError('required')  && profile.get('email')?.touched" class="error-message">
-                Este campo é obrigatório.
-            </p>
-            <p *ngIf="profile.get('email')?.hasError('email')  && profile.get('email')?.touched" class="error-message">
-                Formato inválido.
-            </p>
-        </div>
-        <div class="NIF section">
-            <p for="nif">NIF:</p>
-            <input type="text" id="nif" formControlName="nif">
-            <p *ngIf="profile.get('nif')?.hasError('required')  && profile.get('nif')?.touched" class="error-message">
-                Este campo é obrigatório.
-            </p>
-            <p *ngIf="profile.get('nif')?.hasError('invalidNif')  && profile.get('nif')?.touched" class="error-message">
-                Formato inválido.
-            </p>
-        </div>
-        <div class="date-of-birth section">
-            <p for="date-of-birth">Data de Nascimento:</p>
-            <input type="date" id="date-of-birth" formControlName="dateOfBirth">
-            <div *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message dateofbirtherror">
-                Este formulário só pode ser preenchido por maiores de 18 anos.
-            </div>
-        </div>
-        <div class="countries section">
-           <p for="countries">País:</p>
-           <select formControlName="countries" (change)="onSelect">
-              <option ngValue="">Selecione um país</option>
-              <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
-            </select>
-            <p *ngIf="profile.get('countries')?.hasError('required') && profile.get('countries')?.touched" class="error-message">
+  <h2>Preencha o seguinte formulário</h2>
+  <form [formGroup]="profile" class="profile">
+      <div class="name section">
+          <p for="fullName">Nome completo:</p>
+          <input type="text" id="fullName" formControlName="fullName">
+          <p *ngIf="profile.get('fullName')?.hasError('required')  && profile.get('fullName')?.touched" class="error-message">
               Este campo é obrigatório.
-            </p>
-        </div>
-        <div class="cities section">
-            <p for="cities">Cidade:</p>
-            <select formControlName="cities" (change)="onSelect">
-              <option ngValue="">Selecione uma cidade</option>
-              <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
-            </select>
-            <p *ngIf="profile.get('cities')?.hasError('required') && profile.get('cities')?.touched" class="error-message">
+          </p>
+      </div>
+      <div class="emailAddress section">
+          <p for="email">Email:</p>
+          <input type="text" id="email" formControlName="email">
+          <p *ngIf="profile.get('email')?.hasError('required')  && profile.get('email')?.touched" class="error-message">
               Este campo é obrigatório.
-            </p>
-        </div>
-        <div class="address section">
-          <p for="address">Endereço</p>
-            <input type="text" id="address" formControlName="address" >
-            <p *ngIf="profile.get('address')?.hasError('required') && profile.get('address')?.touched" class="error-message">
-              Este campo é obrigatório.
-            </p>
-        </div>
-
-        <div class="postcode section">
-          <p for="postcode">Código Postal</p>
-            <input type="text" id="postcode" formControlName="postcode" (change)="onSelect">
-            <p *ngIf="profile.get('postcode')?.hasError('required') && profile.get('postcode')?.touched" class="error-message">
-              Este campo é obrigatório.
-            </p>
-            <!--if selected country is portugal, validate postcode -->
-            <p *ngIf="profile.get('postcode')?.hasError('invalidPostcode') && profile.get('postcode')?.touched" class="error-message">
+          </p>
+          <p *ngIf="profile.get('email')?.hasError('email')  && profile.get('email')?.touched" class="error-message">
               Formato inválido.
-            </p>
-        </div>
-        <div class="phoneNumber section">
-          <p for="phoneNumber">Telefone</p>
-          <input type="text" id="phoneNumber" formControlName="phoneNumber">
-          <p *ngIf="profile.get('phoneNumber')?.hasError('required') && profile.get('phoneNumber')?.touched" class="error-message">
+          </p>
+      </div>
+      <div class="NIF section">
+          <p for="nif">NIF:</p>
+          <input type="text" id="nif" formControlName="nif">
+          <p *ngIf="profile.get('nif')?.hasError('required')  && profile.get('nif')?.touched" class="error-message">
+              Este campo é obrigatório.
+          </p>
+          <p *ngIf="profile.get('nif')?.hasError('invalidNif')  && profile.get('nif')?.touched" class="error-message">
+              Formato inválido.
+          </p>
+      </div>
+      <div class="date-of-birth section">
+          <p for="date-of-birth">Data de Nascimento:</p>
+          <input type="date" id="date-of-birth" formControlName="dateOfBirth">
+          <div *ngIf="profile.get('dateOfBirth')?.hasError('invalidAge') && profile.get('dateOfBirth')?.touched" class="error-message dateofbirtherror">
+              Este formulário só pode ser preenchido por maiores de 18 anos.
+          </div>
+      </div>
+      <div class="countries section">
+          <p for="countries">País:</p>
+          <select formControlName="countries" (change)="onSelect">
+            <option ngValue="">Selecione um país</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+          </select>
+          <p *ngIf="profile.get('countries')?.hasError('required') && profile.get('countries')?.touched" class="error-message">
             Este campo é obrigatório.
           </p>
-          <p *ngIf="profile.get('phoneNumber')?.hasError('invalidPhoneNumber') && profile.get('phoneNumber')?.touched" class="error-message">
+      </div>
+      <div class="cities section">
+          <p for="cities">Cidade:</p>
+          <select formControlName="cities" (change)="onSelect">
+            <option ngValue="">Selecione uma cidade</option>
+            <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+          </select>
+          <p *ngIf="profile.get('cities')?.hasError('required') && profile.get('cities')?.touched" class="error-message">
+            Este campo é obrigatório.
+          </p>
+      </div>
+      <div class="address section">
+        <p for="address">Endereço</p>
+          <input type="text" id="address" formControlName="address" >
+          <p *ngIf="profile.get('address')?.hasError('required') && profile.get('address')?.touched" class="error-message">
+            Este campo é obrigatório.
+          </p>
+      </div>
+
+      <div class="postcode section">
+        <p for="postcode">Código Postal</p>
+          <input type="text" id="postcode" formControlName="postcode" (change)="onSelect">
+          <p *ngIf="profile.get('postcode')?.hasError('required') && profile.get('postcode')?.touched" class="error-message">
+            Este campo é obrigatório.
+          </p>
+          <!--if selected country is portugal, validate postcode -->
+          <p *ngIf="profile.get('postcode')?.hasError('invalidPostcode') && profile.get('postcode')?.touched" class="error-message">
             Formato inválido.
           </p>
-        </div>
-        <div class="gender section">
-          <p for="gender">Género</p>
-          <div class="gender-container">
-            <input type="radio" name="gender" value="F" formControlName="gender">Feminino
-            <input type="radio" name="gender" value="M" formControlName="gender">Masculino
-          </div>
-          <p *ngIf="profile.get('gender')?.hasError('required') && profile.get('gender')?.touched" class="error-message">
-          Este campo é obrigatório.
-          </p>
-        </div>
-        <div class="submit">
-          <button class="submit" [disabled]="!isFormValid()">Submit</button>
       </div>
-    </form>
+      <div class="phoneNumber section">
+        <p for="phoneNumber">Telefone</p>
+        <input type="text" id="phoneNumber" formControlName="phoneNumber">
+        <p *ngIf="profile.get('phoneNumber')?.hasError('required') && profile.get('phoneNumber')?.touched" class="error-message">
+          Este campo é obrigatório.
+        </p>
+        <p *ngIf="profile.get('phoneNumber')?.hasError('invalidPhoneNumber') && profile.get('phoneNumber')?.touched" class="error-message">
+          Formato inválido.
+        </p>
+      </div>
+      <div class="gender section">
+        <p for="gender">Género</p>
+        <div class="gender-container">
+          <input type="radio" name="gender" value="F" formControlName="gender">Feminino
+          <input type="radio" name="gender" value="M" formControlName="gender">Masculino
+        </div>
+        <p *ngIf="profile.get('gender')?.hasError('required') && profile.get('gender')?.touched" class="error-message">
+        Este campo é obrigatório.
+        </p>
+      </div>
+      <div class="submit">
+        <button class="submit" [disabled]="!isFormValid()">Submit</button>
+    </div>
+  </form>
 </div>
